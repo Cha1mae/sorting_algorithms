@@ -11,10 +11,10 @@ void swap(int *array, size_t size, int *a, int *b)
 {
 	if (*a != *b)
 	{
-	*a = *a + *b;
-	*b = *a + *b;
-	*a = *a - b;
-	print_array((const int *)array, size);
+		*a = *a + *b;
+		*b = *a + *b;
+		*a = *a - *b;
+		print_array((const int *)array, size);
 	}
 }
 
@@ -31,9 +31,14 @@ size_t lomuto_partition(int *array, size_t size, ssize_t lo, ssize_t hi)
 	int i, j, pivot = array[hi];
 
 	for (i = j = lo; j < hi; j++)
+	{
 		if (array[j] < pivot)
-			swap(array, size, &array[j], &array[i++];
-	swap(array, size, &array[i], &array[hi];
+		{
+			swap(array, size, &array[j], &array[i]);
+			i++;
+		}
+	}
+	swap(array, size, &array[i], &array[hi]);
 
 	return (i);
 }
@@ -45,7 +50,7 @@ size_t lomuto_partition(int *array, size_t size, ssize_t lo, ssize_t hi)
  * @hi: ending index of the partition
  * @size: amount of elements in array
  */
-void quicksort_recursive(int *array, size_t size,  ssize_t lo, ssize_t hi)
+void quicksort_recursive(int *array, ssize_t lo, ssize_t hi, size_t size)
 {
 	if (lo < hi)
 	{
@@ -62,6 +67,7 @@ void quicksort_recursive(int *array, size_t size,  ssize_t lo, ssize_t hi)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (!array || !size)
+	if (!array || size <= 1)
 		return;
-	quicksort_recursive(array, size, 0, size - 1);
+	quicksort_recursive(array, 0, size - 1, size);
+}
