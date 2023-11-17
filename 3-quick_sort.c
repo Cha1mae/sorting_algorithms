@@ -5,6 +5,7 @@
  * @array: the array to sort
  * @a: address of the first value
  * @b: address of the second value
+ * @size: arry siz
  */
 void swap(int *array, size_t size, int *a, int *b)
 {
@@ -12,7 +13,7 @@ void swap(int *array, size_t size, int *a, int *b)
 	{
 	*a = *a + *b;
 	*b = *a + *b;
-	*a = *a -b;
+	*a = *a - b;
 	print_array((const int *)array, size);
 	}
 }
@@ -38,19 +39,6 @@ size_t lomuto_partition(int *array, size_t size, ssize_t lo, ssize_t hi)
 }
 
 /**
- * quick_sort - quickly sort arrays
- * @array: the array
- * @size: the size
- */
-void quick_sort(int *array, size_t size)
-{
-	if (!array || !size)
-		return;
-
-	quicksort_recursive(array, size, 0, size -1);
-}
-
-/**
  * quicksort_recursive - recursive function to perform Quick sort
  * @array: array of integers to be sorted
  * @lo: starting index of the partition
@@ -67,3 +55,13 @@ void quicksort_recursive(int *array, size_t size,  ssize_t lo, ssize_t hi)
 		quicksort_recursive(array, pi + 1, hi, size);
 	}
 }
+/**
+ * quick_sort - quickly sort arrays
+ * @array: the array
+ * @size: the size
+ */
+void quick_sort(int *array, size_t size)
+{
+	if (!array || !size)
+		return;
+	quicksort_recursive(array, size, 0, size - 1);

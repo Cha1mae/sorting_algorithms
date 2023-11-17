@@ -27,10 +27,10 @@ void print_list(const listint_t *list);
 void swapping(listint_t *a, listint_t *b);
 
 /*task 3*/
-void swap(int *array, int *a, int *b);
+void swap(int *array, size_t size, int *a, int *b);
 size_t lomuto_partition(int *array, size_t size, ssize_t lo, ssize_t hi);
 void quick_sort(int *array, size_t size);
-void quicksort_recursive(int *array, ssize_t low, ssize_t high, size_t size);
+void quicksort_recursive(int *array, size_t size,  ssize_t lo, ssize_t hi);
 
 /* mandatory tasks prototypes*/
 void bubble_sort(int *array, size_t size);
