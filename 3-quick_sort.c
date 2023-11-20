@@ -3,17 +3,17 @@
 /**
  * swap - swap two elements in an array
  * @array: the array to sort
- * @a: address of the first value
- * @b: address of the second value
+ * @j: address of the first value
+ * @v: address of the second value
  * @size: arry siz
  */
-void swap(int *array, size_t size, int *a, int *b)
+void swap(int *array, size_t size, int *j, int *v)
 {
-	if (*a != *b)
+	if (*j != *v)
 	{
-		*a = *a ^ *b;
-		*b = *a ^ *b;
-		*a = *a ^ *b;
+		*j = *j ^ *v;
+		*v = *j ^ *v;
+		*j = *j ^ *v;
 		print_array((const int *)array, size);
 	}
 }
@@ -28,19 +28,19 @@ void swap(int *array, size_t size, int *a, int *b)
  */
 size_t lomuto_partition(int *array, size_t size, ssize_t lo, ssize_t hi)
 {
-	int i, j, pivot = array[hi];
+	int x, y, pivot = array[hi];
 
-	for (i = j = lo; j < hi; j++)
+	for (x = y = lo; y < hi; y++)
 	{
-		if (array[j] < pivot)
+		if (array[y] < pivot)
 		{
-			swap(array, size, &array[j], &array[i]);
-			i++;
+			swap(array, size, &array[y], &array[x]);
+			x++;
 		}
 	}
-	swap(array, size, &array[i], &array[hi]);
+	swap(array, size, &array[x], &array[hi]);
 
-	return (i);
+	return (x);
 }
 
 /**
@@ -48,7 +48,7 @@ size_t lomuto_partition(int *array, size_t size, ssize_t lo, ssize_t hi)
  * @array: array of integers to be sorted
  * @lo: starting index of the partition
  * @hi: ending index of the partition
- * @size: amount of elements in array
+ * @size: amount of elments in array
  */
 void quicksort_recursive(int *array, ssize_t lo, ssize_t hi, size_t size)
 {
